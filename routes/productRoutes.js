@@ -1,30 +1,38 @@
-const express = require('express')
-const { getAllProducts, postProduct, deleteProduct, getProduct } = require('../controllers/productController')
-const Router = express.Router()
-const multer = require("multer")
-const path = require('path')
-const fs = require('fs')
+import express from "express";
+import {
+  getAllProducts,
+  postProduct,
+  deleteProduct,
+  getProduct,
+} from "../controllers/productController.js";
 
-console.log(__dirname)
+import multer from "multer";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
+
+const Router = express.Router();
 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const dir = path.join(__dirname, "..", "ecommerce", "public", "uploads")
-        if (!fs.existsSync(dir)){
-            fs.mkdirSync(dir);
-        }
-      cb(null, "./ecommerce/public/uploads")
-    },
-    filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now()
-      cb(null, uniqueSuffix + file.originalname)
+  destination: function (req, file, cb) {
+    const __dirname = dirname(fileURLToPath(import.meta.url));
+    const dir = path.join(__dirname, "..", "ecommerce", "public", "uploads");
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
     }
-  })
-  
-const upload = multer({ storage: storage })
+    cb(null, "./ecommerce/public/uploads");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname);
+  },
+});
 
-Router.route("/products").get(getAllProducts).post(upload.array("productImage"), postProduct)
-Router.route("/products/:id").delete(deleteProduct).get(getProduct)
+const upload = multer({ storage: storage });
 
+Router.route("/products")
+  .get(getAllProducts)
+  .post(upload.array("productImage"), postProduct);
+Router.route("/products/:id").delete(deleteProduct).get(getProduct);
 
-module.exports = Router
+export default Router;

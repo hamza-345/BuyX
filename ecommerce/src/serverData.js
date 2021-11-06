@@ -21,8 +21,13 @@ const del = id => {
     return request.then(response => response.data)
 }
 
+const getProduct = id => {
+    const request = axios.get(`${url}/${id}`)
+    return request.then(response => response.data)
+}
+
 const exportedObj = {
-    getAll, create, update, del
+    getAll, create, update, del, getProduct
 }
 
 export default exportedObj

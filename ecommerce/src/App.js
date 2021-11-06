@@ -1,24 +1,28 @@
-import React, {useState, useEffect} from 'react'
-import AppBar from './components/Appbar'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import serverData from "./serverData"
-import Home from "./components/Home"
+import React from "react";
+import AppBar from "./components/Appbar";
+import Home from "./components/Home";
+import ProductHome from "./components/ProductHome";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import Cart from "./components/Cart";
 
 const App = () => {
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-    serverData.getAll().then(data => {
-      setProducts(data)
-    })
-  }, [])
   return (
-    <>
-      <AppBar/>
-      <Home products = {products}/>
-    </>
-  )
-}
+    <Router>
+      <AppBar />
+      <Container>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/products/:id">
+          <ProductHome />
+        </Route>
+        <Route path="/cart/:id?">
+          <Cart />
+        </Route>
+      </Container>
+    </Router>
+  );
+};
 
-export default App
-
+export default App;

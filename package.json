@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "bootstrap": "^5.1.1",
     "classnames": "^2.3.1",
     "cors": "^2.8.5",
@@ -12,8 +13,10 @@
     "dom-helpers": "^5.2.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-async-handler": "^1.2.0",
     "invariant": "^2.2.4",
     "js-tokens": "^4.0.0",
+    "jsonwebtoken": "^8.5.1",
     "loose-envify": "^1.4.0",
     "mongoose": "^6.0.10",
     "morgan": "^1.10.0",
@@ -34,6 +37,7 @@
     "uncontrollable": "^7.2.1",
     "warning": "^4.0.3"
   },
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",

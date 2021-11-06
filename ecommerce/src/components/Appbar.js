@@ -6,7 +6,7 @@ const AppBar = () => {
       <>
       <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Ecommerce</Navbar.Brand>
+        <Navbar.Brand href="/">BuyX</Navbar.Brand>
         <Navbar.Toggle />
         <Nav className="ml-auto">
       <Nav.Link href="/cart"><FontAwesomeIcon icon="shopping-cart"/> Cart  </Nav.Link>

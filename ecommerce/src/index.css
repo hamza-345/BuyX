@@ -1,3 +1,9 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 .remove-underline {
     text-decoration: none;
+}
+
+.row {
+    padding: 2
 }
